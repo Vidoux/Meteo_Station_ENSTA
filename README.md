@@ -22,7 +22,10 @@ de créer un serveur web sur un réseau local afin de publier les résultats des
 A partir des spécifications techniques et des datasheet des composants nous avons pu, dans un premier temps, 
 réaliser le schéma électrique de la carte capteur.
 
-<img src="./shemas_elec_carte_capteur.svg" style=" max-width:700px"  >
+<img src="./shemas_elec_carte_capteur.svg" style=" max-width:700px" alt="schéma électrique de la carte capteur" >
 
+Nous avons ensuite, toujours à l'aide de proteus, pu faire le routage de cette même carte. Après usinage de la carte 
+et une scéance de soudure, nous obtenons la carte suivante:
 
-
+<img src="./recto_carte_capteurs.jpeg" style=" max-width:400px"  >
+<img src="./verso_carte_capteurs.jpeg" style=" max-width:400px"  >
