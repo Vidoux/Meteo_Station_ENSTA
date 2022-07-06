@@ -1,10 +1,10 @@
-#include <WiFi.h>
 #include <WebServer.h>
 #include <LiquidCrystal.h>
 
+
 //-------------------Initialisation Serveur web-------------------
 const char *ssid = "groupe8";
-const char *password = "groupe8voila";
+const char *password = "groupe8pswd";
 WebServer server(80);
 
 void handleRoot()
