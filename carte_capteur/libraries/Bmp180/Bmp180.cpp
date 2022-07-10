@@ -4,7 +4,6 @@
 #include "Bmp180.h"
 
 #define OUTPUT_MSB_ADDR  0xF6
-#define OUTPUT_XLSB_ADDR 0xF8
 #define Bmp180_ADDR      0x77
 #define Bmp180_CTRL_ADDR 0xF4
 #define PRESS_CMD_ADDR   0x34
