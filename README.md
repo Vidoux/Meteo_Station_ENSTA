@@ -62,6 +62,9 @@ les 4s) avec les nouvelles valeurs des capteurs.
 
 Pour récupérer les données capteurs, l'idée n'est pas d'utiliser les bibliothèques des fabricants, mais d'utiliser 
 directement la communication en I2C et la manipulation des registres pour lire les valeurs de chaque capteur.
+Nous avons ainsi essayé de regrouper toutes les fonctions de récupération des données des capteurs dans des 
+librairies, chacune dédiées à un constructeur.
+Pour cela nous sommes parties de la documentation arduino: https://docs.arduino.cc/learn/contributions/arduino-creating-library-guide
 
 
 
