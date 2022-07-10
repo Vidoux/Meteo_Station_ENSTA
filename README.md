@@ -48,10 +48,10 @@ Pour programmer le serveur, nous nous sommes inspirés de cette page internet :
 Le principe est d'abord de se connecter à un réseau wifi, pour cela on initialise le ssid et le mot de passe du 
 réseau souhaité :
 
-````C++
+```C++
 const char *ssid = "groupe8";
 const char *password = "groupe8pswd";
-````
+```
 
 De plus, la bibliothèque ```#include <WebServer.h>``` simplifie la création d'un serveur web.
 La programmation de celui-ci est alors asser simple, on peut donc afficher les valeurs de tous les différents 
@@ -64,7 +64,23 @@ Pour récupérer les données capteurs, l'idée n'est pas d'utiliser les bibliot
 directement la communication en I2C et la manipulation des registres pour lire les valeurs de chaque capteur.
 Nous avons ainsi essayé de regrouper toutes les fonctions de récupération des données des capteurs dans des 
 librairies, chacune dédiées à un constructeur.
-Pour cela nous sommes parties de la documentation arduino: https://docs.arduino.cc/learn/contributions/arduino-creating-library-guide
+Pour cela nous sommes parties de la documentation arduino : https://docs.arduino.cc/learn/contributions/arduino-creating-library-guide
+
+Nous avons donc deux librairies : Une pour les fonctions liées au capteur de pression BMP180 et l'autre dédiée au 
+capteur SHT21. Afin d'utiliser ces deux librairies, les dossiers de celles ci doivent-être copiées dans le dossier 
+"libraries" d'Arduino avant la compilation et le téléversement.
+Chaque fonction des librairies est commentée. Ci-dessous un résumé des fonctions utiles pour le programme final:
+
+BMP180:
+```C++
+int32_t getPressure();
+void begin();
+```
+SHT21:
+```C++
+//TODO
+```
+    
 
 
 
