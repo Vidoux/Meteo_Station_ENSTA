@@ -1,11 +1,16 @@
 #include <WebServer.h>
 #include <LiquidCrystal.h>
+#include "Si7034.h"
 
+//Capteur de température:
+Si7034 si7034;
 
 //-------------------Initialisation Serveur web-------------------
 const char *ssid = "groupe8";
 const char *password = "groupe8pswd";
 WebServer server(80);
+
+
 
 void handleRoot()
 {
@@ -37,7 +42,7 @@ const int rs = 15, en = 2, d4 = 0, d5 = 4, d6 = 16, d7 = 17;
 LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
 int index_col_lcd = 0;
 //---------------------------------------------------------
-void PrintLcdCapteurs(float humidity_out, float pressure, float temp, float humidity_in);
+void PrintLcdCapteurs(float humidity_out, float pressure,float temp_out, float temp_in, float humidity_in);
 
 void setup()
 {
@@ -47,6 +52,14 @@ void setup()
     // set up the LCD's number of columns and rows:
     lcd.begin(20, 4);
     lcd.print("LCD OK");
+
+    si7034.begin();
+    if (si7034.queryDevice()) {
+        Serial.println("SI7034: Capteur Opérationnel");
+    }
+    else {
+        Serial.println("SI7034: ERROR, Capteur ne répond pas");
+    }
 
     WiFi.persistent(false);
     WiFi.begin(ssid, password);
@@ -74,48 +87,50 @@ void setup()
 
 void loop()
 {
-    float temp = 35.0;
+    Si7034_Result results_cap_serveur = si7034.fastMeasurement();
+    float temp_out;
+    float temp_in = results_cap_serveur.temperature;
     float humidity_out = 1;
-    float humidity_in = 2;
+    float humidity_in = results_cap_serveur.humidity;
     float pressure = 2;
     server.handleClient();
-    PrintLcdCapteurs(humidity_out, pressure, temp, humidity_in);
+    PrintLcdCapteurs(humidity_out, pressure,temp_out, temp_in, humidity_in);
 
 
 }
 
 
-void PrintLcdCapteurs(float humidity_out, float pressure, float temp, float humidity_in) {
+void PrintLcdCapteurs(float humidity_out, float pressure,float temp_out, float temp_in, float humidity_in) {
     //lcd.setCursor(n°colonne,n°ligne);
     lcd.setCursor(0,0);
-    lcd.println("Interieur");
+    lcd.print("Interieur");
     lcd.setCursor(0,1);
     lcd.print("T-In : ");
-    lcd.print(temp);
-    lcd.println(" C");
+    lcd.print(temp_in);
+    lcd.print(" C");
     lcd.setCursor(0,2);
     lcd.print("H-In : ");
     lcd.print(humidity_in);
-    lcd.println(" %");
+    lcd.print(" %");
 
     delay(4000);
 
     lcd.setCursor(0,0);
-    lcd.println("Exterieur");
+    lcd.print("Exterieur");
     lcd.setCursor(0,1);
     lcd.print("T-Out : ");
-    lcd.print(temp);
-    lcd.println(" C");
+    lcd.print(temp_out);
+    lcd.print(" C");
 
     lcd.setCursor(0,2);
     lcd.print("H-Out : ");
     lcd.print(humidity_out);
-    lcd.println(" %");
+    lcd.print(" %");
 
     lcd.setCursor(0,3);
     lcd.print("P-Out : ");
     lcd.print(pressure);
-    lcd.println(" bar");
+    lcd.print(" bar");
 
 
 

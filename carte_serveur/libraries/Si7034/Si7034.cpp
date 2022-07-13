@@ -54,19 +54,14 @@ Si7034_Result Si7034::noHoldModeMeasurement(uint16_t hexCode) {
         uint8_t _msb = Wire.read();
         uint8_t _lsb = Wire.read();
 
-         ((_msb << 8) | (_lsb));
+         results.humidity = ((_msb << 8) | (_lsb));
     }
 
-
+    //Conversions température
+    results.temperature = -45 + 175 * ((results.temperature)/pow(2, 16));
+    //Conversion Humidité
+    results.humidity = 100 * ((results.humidity)/pow(2, 16));
     return results;
-}
-
-float Si7034::calculateT(uint16_t rawValue) {
-    return -45 + 175 * (rawValue / pow(2,16));
-}
-
-float Si7034::calculateRH(uint16_t rawValue) {
-    return 100 * (rawValue / pow(2, 16));
 }
 
 bool Si7034::queryDevice()
