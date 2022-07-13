@@ -1,5 +1,8 @@
 #include "Arduino.h"
 
+#ifndef METEO_STATION_ENSTA_Bmp180_H
+#define METEO_STATION_ENSTA_Bmp180_H
+
 class Bmp180{
 
     public:
@@ -21,3 +24,5 @@ class Bmp180{
         int32_t _x1, _x2, _x3, _b3, _b5, _b6, _b7 ;
         uint32_t _b4;
 };
+
+#endif

@@ -55,7 +55,7 @@ String Bmp180::toString(){
 }
 
 /*!
- * Récupère la température "brut" (i.e. valuer non convertie en unitées "humaine")
+ * Récupère la température "brute" (i.e. valeur non convertie en unitées "humaine")
  * @return int32_t pressure
  */
 int32_t Bmp180::getRawPressure()

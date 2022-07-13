@@ -1,6 +1,10 @@
 //
 // Created by Tanguy on 10/07/2022.
 //
+#include <Arduino.h>
+
+#ifndef METEO_STATION_ENSTA_Sht21_H
+#define METEO_STATION_ENSTA_Sht21_H
 
 class Sht21
 {
@@ -17,3 +21,5 @@ private:
     float convertRawTemperature(uint16_t rawTemperature);
     float convertRawHumidity(uint16_t rawHumidity);
 };
+
+#endif

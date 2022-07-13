@@ -39,7 +39,7 @@ uint16_t Sht21::getRawTemperature(){
     Wire.write(TEMP_CMD_NO_HOLD_ADDR);
     Wire.endTransmission();
 
-    delayMicroseconds(2000);
+    delay(150);
 
     Wire.requestFrom(Sht21_ADDR, 3);
 
@@ -60,7 +60,7 @@ uint16_t Sht21::getRawHumidity(){
     Wire.write(RH_CMD_NO_HOLD_ADDR);
     Wire.endTransmission();
 
-    delayMicroseconds(2000);
+    delay(150);
 
     Wire.requestFrom(Sht21_ADDR, 3);
 
