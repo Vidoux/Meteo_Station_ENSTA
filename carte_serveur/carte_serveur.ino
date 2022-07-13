@@ -1,6 +1,7 @@
 #include <WebServer.h>
 #include <LiquidCrystal.h>
 #include "Si7034.h"
+#include <LoRa.h>
 
 //Capteur de température:
 Si7034 si7034;
@@ -9,6 +10,13 @@ Si7034 si7034;
 const char *ssid = "groupe8";
 const char *password = "groupe8pswd";
 WebServer server(80);
+
+#define ss 18
+#define rst 14
+#define dio0 26
+#define sck 5
+#define miso 19
+#define mosi 27
 
 
 
@@ -81,12 +89,26 @@ void setup()
     server.begin();
 
     Serial.println("Serveur web actif!");
+
+    Serial.println("LoRa Receiver");
+    SPI.begin(sck, miso, mosi, ss);
+    LoRa.setPins(18, 14, 26);    //setup LoRa transceiver module
+
+    while (!LoRa.begin(866E6))     //433E6 - Asia, 866E6 - Europe, 915E6 - North America
+    {
+        Serial.println(".");
+        delay(500);
+    }
+    LoRa.setSyncWord(0x01);
+    Serial.println("LoRa Initializing OK!");
+
     lcd.clear();
 
 }
 
 void loop()
 {
+
     Si7034_Result results_cap_serveur = si7034.fastMeasurement();
     float temp_out;
     float temp_in = results_cap_serveur.temperature;
@@ -95,6 +117,21 @@ void loop()
     float pressure = 2;
     server.handleClient();
     PrintLcdCapteurs(humidity_out, pressure,temp_out, temp_in, humidity_in);
+
+    int packetSize = LoRa.parsePacket();    // try to parse packet
+    if (packetSize)
+    {
+
+        Serial.print("Received packet '");
+
+        while (LoRa.available())              // read packet
+        {
+            String LoRaData = LoRa.readString();
+            Serial.print(LoRaData);
+        }
+        Serial.print("' with RSSI ");         // print RSSI of packet
+        Serial.println(LoRa.packetRssi());
+    }
 
 
 }

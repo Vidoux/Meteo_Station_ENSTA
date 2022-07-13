@@ -2,6 +2,8 @@
 #include <Wire.h>
 #include <Bmp180.h>
 #include <Sht21.h>
+#include <SPI.h>
+#include <LoRa.h>
 
 const int d4=4,d5=5,d6=6,d7=7,en=3,rs=2;
 LiquidCrystal lcd(rs,en,d4,d5,d6,d7);
@@ -21,6 +23,14 @@ void setup() {
 
     Serial.println(bmp.toString());
     lcd.print("LCD OK");
+
+    Serial.println("LoRa :");
+    if (!LoRa.begin(866E6)) {
+        Serial.println("Starting LoRa failed!");
+        delay(100);
+        Serial.println("LoRa Initializing OK!");
+        LoRa.setSyncWord(0x01);
+    }
 }
 
 
@@ -35,6 +45,36 @@ void loop() {
 
 
     PrintLcdCapteurs(3.3,humidity_out,pressure_bar,temp_out);
+
+    Serial.print("Sending packet: ");
+    Serial.print("Humidite  : ");
+    Serial.println(humidity_out);
+    LoRa.beginPacket();
+    LoRa.print("Hello From LoRA");
+    delay(10);
+    LoRa.print(humidity_out);
+    LoRa.endPacket();
+    delay(100);
+
+    Serial.print("Sending packet: ");
+    Serial.print("Temperature  : ");
+    Serial.println(temp_out);
+    LoRa.beginPacket();
+    LoRa.print("Hello From LoRA");
+    delay(10);
+    LoRa.print(temp_out);
+    LoRa.endPacket();
+    delay(100);
+
+    Serial.print("Sending packet: ");
+    Serial.print("Pression  : ");
+    Serial.println(pressure_bar);
+    LoRa.beginPacket();
+    LoRa.print("Hello From LoRA");
+    delay(10);
+    LoRa.print(pressure_bar);
+    LoRa.endPacket();
+    delay(100);
 }
 
 
