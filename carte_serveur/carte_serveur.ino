@@ -90,6 +90,9 @@ void setup()
 
     Serial.println("Serveur web actif!");
 
+    /*!
+     * LoRa Setup
+     */
     Serial.println("LoRa Receiver");
     SPI.begin(sck, miso, mosi, ss);
     LoRa.setPins(18, 14, 26);    //setup LoRa transceiver module
@@ -101,6 +104,9 @@ void setup()
     }
     LoRa.setSyncWord(0x01);
     Serial.println("LoRa Initializing OK!");
+    /*!
+    * Fin LoRa Setup
+    */
 
     lcd.clear();
 
@@ -118,6 +124,9 @@ void loop()
     server.handleClient();
     PrintLcdCapteurs(humidity_out, pressure,temp_out, temp_in, humidity_in);
 
+    /*!
+     * LoRa Loop
+     */
     int packetSize = LoRa.parsePacket();    // try to parse packet
     if (packetSize)
     {
@@ -132,6 +141,9 @@ void loop()
         Serial.print("' with RSSI ");         // print RSSI of packet
         Serial.println(LoRa.packetRssi());
     }
+    /*!
+    * FIN LoRa Loop
+    */
 
 
 }

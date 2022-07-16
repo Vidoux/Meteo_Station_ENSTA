@@ -24,6 +24,9 @@ void setup() {
     Serial.println(bmp.toString());
     lcd.print("LCD OK");
 
+    /*!
+     * LoRa Setup
+     */
     Serial.println("LoRa :");
     if (!LoRa.begin(866E6)) {
         Serial.println("Starting LoRa failed!");
@@ -31,6 +34,9 @@ void setup() {
         Serial.println("LoRa Initializing OK!");
         LoRa.setSyncWord(0x01);
     }
+    /*!
+    * Fin LoRa Setup
+    */
 }
 
 
@@ -46,6 +52,9 @@ void loop() {
 
     PrintLcdCapteurs(3.3,humidity_out,pressure_bar,temp_out);
 
+    /*!
+     * LoRa Loop
+     */
     Serial.print("Sending packet: ");
     Serial.print("Humidite  : ");
     Serial.println(humidity_out);
@@ -75,6 +84,9 @@ void loop() {
     LoRa.print(pressure_bar);
     LoRa.endPacket();
     delay(100);
+    /*!
+    * Fin LoRa Loop
+    */
 }
 
 
