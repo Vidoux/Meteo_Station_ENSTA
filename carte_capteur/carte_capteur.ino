@@ -26,6 +26,7 @@ void ledBlink(int delay_val);
 void setup() {
     Serial.begin(19200);
     bmp.begin();
+    sht.begin();
     lcd.begin(8,2);
     pinMode(LED, OUTPUT);
 

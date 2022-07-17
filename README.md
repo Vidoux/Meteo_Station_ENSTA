@@ -26,13 +26,13 @@ déjà soudée, prête à être utilisée.
 réaliser le schéma électrique de la carte capteur.
 
 
-![schemas_electrique_carte_capteur](./shemas_elec_carte_capteur.svg)
+![schemas_electrique_carte_capteur](assets/shemas_elec_carte_capteur.svg)
 
 Nous avons ensuite, toujours à l'aide de proteus, pu faire le routage de cette même carte. Après usinage de la carte 
 et une séance de soudure, nous obtenons la carte suivante :
 
-![recto_carte_capteurs](./recto_carte_capteurs.jpeg)
-![verso_carte_capteurs](./verso_carte_capteurs.jpeg)
+![recto_carte_capteurs](assets/recto_carte_capteurs.jpeg)
+![verso_carte_capteurs](assets/verso_carte_capteurs.jpeg)
 
 ## Programmation du Serveur Web
 
@@ -101,13 +101,13 @@ Nous avons enfin utilisés la fonction ```lcd.setCursor(0,1);``` afin de peaufin
 précisément où nous voulions écrire sur l'écran. On utilise ensuite un système de pause avant de changer de donnée 
 affichée. Nous pouvons ainsi faire tourner l'affichage pour afficher toutes les données.
 Nous obtenons ainsi les affichages suivants :</br>
-<img src="./affichage_carte_capteur_1.jpg" width="30%">
-<img src="./affichage_carte_capteur_2.jpg" width="30%">
-<img src="./affichage_carte_capteur_3.jpg" width="30%">
+<img src="./assets/affichage_carte_capteur_1.jpg" width="30%">
+<img src="./assets/affichage_carte_capteur_2.jpg" width="30%">
+<img src="./assets/affichage_carte_capteur_3.jpg" width="30%">
 
-De même, sur la carte serveur :
-<img src="./affichage_carte_serveur_11.jpg" width="45%">
-<img src="./affichage_carte_serveur_22.jpg" width="45%">
+De même, sur la carte serveur :</br>
+<img src="./assets/affichage_carte_serveur_11.jpg" width="45%">
+<img src="./assets/affichage_carte_serveur_22.jpg" width="45%">
 
 
 
