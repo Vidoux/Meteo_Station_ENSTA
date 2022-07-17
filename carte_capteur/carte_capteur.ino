@@ -12,6 +12,14 @@ const int LED = 14;
 Bmp180 bmp;
 Sht21 sht;
 
+/*!
+ * Affichage de toutes les valeurs météorologiques sur l'écran LCD de la station météo
+ * @param humidity_out
+ * @param pressure
+ * @param temp_out
+ * @param temp_in
+ * @param humidity_in
+ */
 void PrintLcdCapteurs(float batterie, float humidity_out, float pressure, float tempout);
 void ledBlink(int delay_val);
 
@@ -24,9 +32,7 @@ void setup() {
     Serial.println(bmp.toString());
     lcd.print("LCD OK");
 
-    /*!
-     * LoRa Setup
-     */
+    //-------------------LoRa Setup-------------------
     Serial.println("LoRa :");
     if (!LoRa.begin(866E6)) {
         Serial.println("Starting LoRa failed!");
@@ -34,9 +40,7 @@ void setup() {
         Serial.println("LoRa Initializing OK!");
         LoRa.setSyncWord(0x01);
     }
-    /*!
-    * Fin LoRa Setup
-    */
+    //------------------------------------------------
 }
 
 
@@ -52,9 +56,7 @@ void loop() {
 
     PrintLcdCapteurs(3.3,humidity_out,pressure_bar,temp_out);
 
-    /*!
-     * LoRa Loop
-     */
+    //-------------------LoRo Loop-------------------
     Serial.print("Sending packet: ");
     Serial.print("Humidite  : ");
     Serial.println(humidity_out);
@@ -84,11 +86,8 @@ void loop() {
     LoRa.print(pressure_bar);
     LoRa.endPacket();
     delay(100);
-    /*!
-    * Fin LoRa Loop
-    */
+    //--------------------------------------
 }
-
 
 void PrintLcdCapteurs(float batterie, float humidity_out, float pressure, float temp_out) {
     ledBlink(300);
