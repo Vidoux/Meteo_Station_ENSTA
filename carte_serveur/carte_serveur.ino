@@ -50,14 +50,22 @@ const int rs = 15, en = 2, d4 = 0, d5 = 4, d6 = 16, d7 = 17;
 LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
 int index_col_lcd = 0;
 //---------------------------------------------------------
+
+/*!
+ * Affichage de toutes les valeurs météorologiques sur l'écran LCD de la station météo
+ * @param humidity_out
+ * @param pressure
+ * @param temp_out
+ * @param temp_in
+ * @param humidity_in
+ */
 void PrintLcdCapteurs(float humidity_out, float pressure,float temp_out, float temp_in, float humidity_in);
 
 void setup()
 {
     Serial.begin(115200);
     delay(1000);
-    Serial.println("\n");
-    // set up the LCD's number of columns and rows:
+
     lcd.begin(20, 4);
     lcd.print("LCD OK");
 
@@ -90,9 +98,7 @@ void setup()
 
     Serial.println("Serveur web actif!");
 
-    /*!
-     * LoRa Setup
-     */
+    //-------------------LoRa Setup-------------------
     Serial.println("LoRa Receiver");
     SPI.begin(sck, miso, mosi, ss);
     LoRa.setPins(18, 14, 26);    //setup LoRa transceiver module
@@ -104,18 +110,16 @@ void setup()
     }
     LoRa.setSyncWord(0x01);
     Serial.println("LoRa Initializing OK!");
-    /*!
-    * Fin LoRa Setup
-    */
+    //------------------------------------------------
 
     lcd.clear();
-
 }
 
 void loop()
 {
 
     Si7034_Result results_cap_serveur = si7034.fastMeasurement();
+
     float temp_out;
     float temp_in = results_cap_serveur.temperature;
     float humidity_out = 1;
@@ -124,9 +128,8 @@ void loop()
     server.handleClient();
     PrintLcdCapteurs(humidity_out, pressure,temp_out, temp_in, humidity_in);
 
-    /*!
-     * LoRa Loop
-     */
+
+     //-------------------LoRa Loop-------------------
     int packetSize = LoRa.parsePacket();    // try to parse packet
     if (packetSize)
     {
@@ -141,9 +144,7 @@ void loop()
         Serial.print("' with RSSI ");         // print RSSI of packet
         Serial.println(LoRa.packetRssi());
     }
-    /*!
-    * FIN LoRa Loop
-    */
+    //------------------------------------------------
 
 
 }
