@@ -1,4 +1,4 @@
-# Weather_Station_ENSTA_B
+# Projet Station Météo 
 
 Le projet est une station météo connectée.
 Nous avons réalisé deux cartes électroniques qui constituent la station météo.
@@ -78,8 +78,33 @@ void begin();
 ```
 SHT21:
 ```C++
-//TODO
+void begin();
+float sht.getHumidity();
+float sht.getTemperature();
 ```
+
+## Affichage des données sur les écrans LCD (20x4 et 8x2)
+
+Pour l'affichage des données des capteurs, la carte capteur est équipée d'un écran 8x2, la carte serveur quant à 
+elle est équipée d'un écran 20x4. Le principe de programmation est le même pour les deux écran, il y a simplement la 
+taille qui change. Nous avons utilisé la bibliothèque arduino ```<LiquidCrystal.h>```.
+Après avoir initialisé les pins de l'écran, on lance la communication avec l'écran:
+```C++
+lcd.begin(8,2);
+```
+On peut ensuite afficher les valeurs de nos capteurs avec la fonction 
+```C++
+lcd.print("...");
+```
+
+Nous avons enfin utilisés la fonction ```lcd.setCursor(0,1);``` afin de peaufiner notre affichage en choisissant 
+précisément où nous voulions écrire sur l'écran. On utilise ensuite un système de pause avant de changer de donnée 
+affichée. Nous pouvons ainsi faire tourner l'affichage pour afficher toutes les données.
+Nous obtenons ainsi les affichages suivants :
+![affichage_carte_serveur_1.jpg](./affichage_carte_serveur_1.jpg)
+![affichage_carte_serveur_2.jpg](./affichage_carte_serveur_2.jpg)
+![affichage_carte_serveur_3.jpg](./affichage_carte_serveur_3.jpg)
+
     
 
 
