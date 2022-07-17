@@ -101,9 +101,14 @@ Nous avons enfin utilisés la fonction ```lcd.setCursor(0,1);``` afin de peaufin
 précisément où nous voulions écrire sur l'écran. On utilise ensuite un système de pause avant de changer de donnée 
 affichée. Nous pouvons ainsi faire tourner l'affichage pour afficher toutes les données.
 Nous obtenons ainsi les affichages suivants :</br>
-<img src="./affichage_carte_serveur_1.jpg" width="30%">
-<img src="./affichage_carte_serveur_2.jpg" width="30%">
-<img src="./affichage_carte_serveur_3.jpg" width="30%">
+<img src="./affichage_carte_capteur_1.jpg" width="30%">
+<img src="./affichage_carte_capteur_2.jpg" width="30%">
+<img src="./affichage_carte_capteur_3.jpg" width="30%">
+
+De même, sur la carte serveur :
+<img src="./affichage_carte_serveur_11.jpg" width="45%">
+<img src="./affichage_carte_serveur_22.jpg" width="45%">
+
 
 
     
