@@ -100,7 +100,7 @@ int32_t Bmp180::getRawPressure()
 }
 
 /*!
- * Convertire une valeur de pression brute, du capteur, en valeur utilisable, en Bar.
+ * Convertir une valeur de pression brute, du capteur, en valeur utilisable, en Bar.
  * @param int32_t raw_pressure
  * @return int32_t pressure, Pression en Pascal (Pa)
  */
