@@ -12,13 +12,14 @@ void Si7034::begin(){
     Wire.begin();
 }
 
-Si7034_Result Si7034::normalMeasurement() {
-    return noHoldModeMeasurement(0x7866);
-}
-
+/*!
+ * Récupération des mesures du capteur
+ * @return struct Si7034_Result
+ */
 Si7034_Result Si7034::fastMeasurement() {
     return noHoldModeMeasurement(0x609C);
 }
+
 
 Si7034_Result Si7034::noHoldModeMeasurement(uint16_t hexCode) {
 
@@ -64,6 +65,10 @@ Si7034_Result Si7034::noHoldModeMeasurement(uint16_t hexCode) {
     return results;
 }
 
+/*!
+ * Test the connectivity to the sensor
+ * @return bool result
+ */
 bool Si7034::queryDevice()
 {
     bool result = false;

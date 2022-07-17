@@ -18,18 +18,12 @@ class Si7034 {
 
     public:
         void begin();
-        uint16_t readFirmwareRevision(); // 0x10 = Firware version 1.0
-        Si7034_Result normalMeasurement();
         Si7034_Result fastMeasurement();
         bool queryDevice();
 
     private:
         uint8_t _address;
-
         Si7034_Result noHoldModeMeasurement(uint16_t hexCode);
-        float calculateT(uint16_t rawValue);
-        float calculateRH(uint16_t rawValue);
-
 };
 
 
