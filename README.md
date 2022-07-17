@@ -123,6 +123,13 @@ De même, sur la carte serveur :</br>
 
 ## LoRa et Transmission des données entre la carte Serveur et la Carte Capteur
 
+Les cartes serveur et capteur disposent du même module LoRa (Low Power Wide Area Network).
+Le LoRa est un protocole de communication radio qui utilise une technique propriétaire de modulation par étalement de spectre.
+Cette technologie est exploitable grâce au module RFM95 que l'on a soudé sur les deux cartes.
+D'un point de vue matériel le Lora est alimenté en 3.3V et consomme 0.5mA, il communique avec le micro-controleur en SPI(Serial Peripheral Interface, bus de données série synchrone). On doit ajouter au RFM95 pour finaliser le circuit de communication une antenne dimensionnée par nos soins. Pour le calcul de la taille de l'antenne en fonction de la fréquence du RFM95 aux normes européennes nous avons : L = C/4*f = 3 * 10e8/(4* 869*10e6) = 8.626cm.
+
+La programmation du LoRa se fait en exécutant un code sur le micro controleur. Nous utilisons les codes de l'article "How To Use Lora With Arduino @LGPL" sur le site create.arduino.cc pour établir une écoute sur le récepteur (carte serveur) et une émission de données (carte capteur). Ces codes utilisent les bibliothèques SPI et LoRa pour fonctionner. Pour synthétiser, le code "émission" envoie des paquets LoRa toutes les secondes avec les informations provenant des capteurs alors que le code "réception" est en écoute permanente pour reccueilir les informations expédiées. Il ne suffit alors plus que de transmettre ces informations sur le site web HTTP programmé juste avant.
+
 ## Guide d'implémentation du code
 
 ### Configuration de l'environnement
@@ -154,7 +161,6 @@ Pour la carte serveur, on modifie les paramètres suivants :
 - la fréquence de Flash pour "80MHz"
 
 On peut ensuite compiler et téléverser le code vers la carte serveur.
-
 
 
 
