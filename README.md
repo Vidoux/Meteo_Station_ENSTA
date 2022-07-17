@@ -2,6 +2,7 @@
 
 Le projet est une station météo connectée.
 Nous avons réalisé deux cartes électroniques qui constituent la station météo.
+L'intégralité des ressources développées durant le projet sont disponibles sur le dépot GitHub suivant: https://github.com/Vidoux/Meteo_Station_ENSTA
 
 ## Introduction
 
@@ -130,11 +131,29 @@ Tout d'abord, nous utilisons l'IDE arduino pour compiler et téléverser le code
 Après avoir téléchargé le code vous devez copier les dossiers suivants (les bibliothèques) :
 - carte_serveur\libraries\Si7034
 - carte_capteur\libraries\Bmp180
-- carte_capteur\libraries\Sht21
+- carte_capteur\libraries\Sht21 </br>
 Il faut ensuite les coller dans le dossier Documents\Arduino\libraries
 Ainsi Arduino retrouvera les bibliothèques au moment de compiler le code.
 
 ### Carte capteur
+
+Ouvrir le fichier carte_capteur.ino avec l'éditeur Arduino.
+Modifier ensuite :
+- le type de carte pour "Arduino Pro ou Pro Mini"
+- le processeur pour "ATmega328P (3,3V, 8MHz)"
+- le port pour correspondre au port sur lequel votre carte est branchée
+
+On peut ensuite compiler le code et le téléverser vers la carte capteur.
+
+### Carte Serveur
+
+Pour la carte serveur, on modifie les paramètres suivants :
+
+- le type de carte pour "DOIT ESP32 DEVKIT V1"
+- la vitesse d'Upload pour "921600"
+- la fréquence de Flash pour "80MHz"
+
+On peut ensuite compiler et téléverser le code vers la carte serveur.
 
 
 
