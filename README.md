@@ -34,6 +34,9 @@ et une séance de soudure, nous obtenons la carte suivante :
 ![recto_carte_capteurs](assets/recto_carte_capteurs.jpeg)
 ![verso_carte_capteurs](assets/verso_carte_capteurs.jpeg)
 
+Nous avons par la suite pu charger le bootloader de la carte, permettant d'y télevrser notre programme, avant de 
+terminer la soudure du capteur LoRa.
+
 ## Programmation du Serveur Web
 
 La carte Serveur est équipée d'un microcontroller ESP32 qui est équipée d'une puce wifi.
@@ -83,6 +86,14 @@ float sht.getHumidity();
 float sht.getTemperature();
 ```
 
+De même pour le capteur Si7034, nous avons développé une librairie de fonctionnalité à partir de la datsheet du 
+composant. Les fonctions publiques essentielles de cette bibliothèque sont les suivantes:
+```C++
+void begin();
+bool queryDevice();
+Si7034_Result fastMeasurement();
+```
+
 ## Affichage des données sur les écrans LCD (20x4 et 8x2)
 
 Pour l'affichage des données des capteurs, la carte capteur est équipée d'un écran 8x2, la carte serveur quant à 
@@ -109,10 +120,21 @@ De même, sur la carte serveur :</br>
 <img src="./assets/affichage_carte_serveur_11.jpg" width="45%">
 <img src="./assets/affichage_carte_serveur_22.jpg" width="45%">
 
+## LoRa et Transmission des données entre la carte Serveur et la Carte Capteur
 
+## Guide d'implémentation du code
 
-    
+### Configuration de l'environnement
 
+Tout d'abord, nous utilisons l'IDE arduino pour compiler et téléverser le code sur les cartes.
+Après avoir téléchargé le code vous devez copier les dossiers suivants (les bibliothèques) :
+- carte_serveur\libraries\Si7034
+- carte_capteur\libraries\Bmp180
+- carte_capteur\libraries\Sht21
+Il faut ensuite les coller dans le dossier Documents\Arduino\libraries
+Ainsi Arduino retrouvera les bibliothèques au moment de compiler le code.
+
+### Carte capteur
 
 
 
